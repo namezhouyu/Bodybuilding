@@ -51,12 +51,14 @@ public class MainActivity extends AppCompatActivity {
               @Override public void run() {
                 try {
                   System.out.println("组开始");
+                  SoundsHelper.get().play1();
                   for (int j = 0; j < partTime; j++) {
                     Thread.sleep(1000);
                     second++;
                     handler.sendEmptyMessage(0);
                   }
                   System.out.println("组结束，开始休息");
+                  SoundsHelper.get().play2();
                   for (int j = 0; j < restTime; j++) {
                     Thread.sleep(1000);
                     second++;
