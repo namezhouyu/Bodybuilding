@@ -7,12 +7,4 @@
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
   </style>
-  <style name="LyTheme3" parent="LyTheme">
-    <item name="lyColor0">#000000</item>
-    <item name="lyColor1">#000000</item>
-    <item name="lyColor2">#000000</item>
-    <item name="lyColorColon">#000000</item>
-    <item name="lyThickness">20</item>
-    <item name="lyColonThickness">1</item>
-  </style>
 </resources>

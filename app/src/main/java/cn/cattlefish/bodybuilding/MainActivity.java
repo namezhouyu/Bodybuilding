@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     final EditText edtPart = (EditText) findViewById(R.id.edit_part);
     final EditText edtRest = (EditText) findViewById(R.id.edit_rest);
     final EditText edtCount = (EditText) findViewById(R.id.edit_count);
-    edtPart.setText(Application.getInstance().getGroupPartTime() + "");
-    edtRest.setText(Application.getInstance().getGroupRestTime() + "");
-    edtCount.setText(Application.getInstance().getGroupCount() + "");
+    edtPart.setText(BApplication.getInstance().getGroupPartTime() + "");
+    edtRest.setText(BApplication.getInstance().getGroupRestTime() + "");
+    edtCount.setText(BApplication.getInstance().getGroupCount() + "");
     findViewById(R.id.btn_terminal).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         stopService();
@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
           final int partTime = Integer.valueOf(part);
           final int restTime = Integer.valueOf(rest);
           final int countNo = Integer.valueOf(count);
-          Application.getInstance().setGroupPartTime(partTime);
-          Application.getInstance().setGroupRestTime(restTime);
-          Application.getInstance().setGroupCount(countNo);
+          BApplication.getInstance().setGroupPartTime(partTime);
+          BApplication.getInstance().setGroupRestTime(restTime);
+          BApplication.getInstance().setGroupCount(countNo);
           for (int i = 0; i < countNo; i++) {
             Runnable runnable = new Runnable() {
               @Override public void run() {
