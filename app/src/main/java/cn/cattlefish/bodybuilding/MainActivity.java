@@ -51,14 +51,20 @@ public class MainActivity extends AppCompatActivity {
               @Override public void run() {
                 try {
                   System.out.println("组开始");
-                  SoundsHelper.get().play1();
+                  Message message = new Message();
+                  message.what = Play.START.getCode();
+                  handler.sendMessage(message);
+
                   for (int j = 0; j < partTime; j++) {
                     Thread.sleep(1000);
                     second++;
                     handler.sendEmptyMessage(0);
                   }
                   System.out.println("组结束，开始休息");
-                  SoundsHelper.get().play2();
+
+                  message = new Message();
+                  message.what = Play.END.getCode();
+                  handler.sendMessage(message);
                   for (int j = 0; j < restTime; j++) {
                     Thread.sleep(1000);
                     second++;
@@ -103,7 +109,27 @@ public class MainActivity extends AppCompatActivity {
   Handler handler = new Handler() {
     @Override public void handleMessage(Message msg) {
       super.handleMessage(msg);
-      txtSecond.setText(second + "s");
+      int code = msg.what;
+      if (0 == code) {
+        txtSecond.setText(second + "s");
+      } else if (Play.START.getCode() == code) {
+        SoundsHelper.get(MainActivity.this).play1();
+      } else if (Play.END.getCode() == code) {
+        SoundsHelper.get(MainActivity.this).play2();
+      }
     }
   };
+
+  enum Play {
+    START(1), END(2);
+    int code;
+
+    Play(int code) {
+      this.code = code;
+    }
+
+    public int getCode() {
+      return code;
+    }
+  }
 }
