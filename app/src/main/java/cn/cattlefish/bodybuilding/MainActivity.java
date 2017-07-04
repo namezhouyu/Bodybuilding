@@ -93,9 +93,14 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void stopService() {
-    executorService.shutdownNow();
-    executorService = null;
-    handler.removeCallbacksAndMessages(null);
+    if (null != executorService) {
+      executorService.shutdownNow();
+      executorService = null;
+    }
+    if (null != handler) {
+      handler.removeCallbacksAndMessages(null);
+      handler = null;
+    }
     second = 0;
     txtSecond.setText("0s");
     stacks.clear();
