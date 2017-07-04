@@ -1,5 +1,20 @@
 apply plugin: 'com.android.application'
+static def gitVersionCode() {
+  def cmd = 'git rev-list HEAD --first-parent --count'
+  cmd.execute().text.trim().toInteger()
+}
 
+static def gitVersionTag() {
+  def cmd = 'git describe --tags'
+  def version = cmd.execute().text.trim()
+  def pattern = "-(\\d+)-g"
+  def matcher = version =~ pattern
+
+  if (matcher) {
+    version = version.substring(0, matcher.start())
+  }
+  return version
+}
 android {
   compileSdkVersion 25
   buildToolsVersion "25.0.2"
@@ -9,6 +24,10 @@ android {
     targetSdkVersion 25
     versionCode 1
     versionName "1.0"
+  }
+  applicationVariants.all { variant ->
+    variant.mergedFlavor.versionCode = gitVersionCode()
+    variant.mergedFlavor.versionName = gitVersionTag()
   }
   buildTypes {
     release {
