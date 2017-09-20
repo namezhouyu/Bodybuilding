@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                   for (int j = 0; j < partTime; j++) {
                     Thread.sleep(1000);
                     second++;
+
                     handler.sendEmptyMessage(0);
                   }
                   System.out.println("组结束，开始休息");
