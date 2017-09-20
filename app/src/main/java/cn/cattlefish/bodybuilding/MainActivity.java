@@ -50,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
             Runnable runnable = new Runnable() {
               @Override public void run() {
                 try {
+
+
                   System.out.println("组开始");
+
                   Message message = new Message();
                   message.what = Play.START.getCode();
                   handler.sendMessage(message);
